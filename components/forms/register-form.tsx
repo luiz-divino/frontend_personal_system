@@ -33,6 +33,7 @@ export function RegisterForm() {
             <Input
               className="bg-input-register placeholder:text-input-text-register"
               id="name"
+              name="name"
               type="text"
               placeholder="Digite seu nome..."
               minLength={3}
@@ -44,6 +45,7 @@ export function RegisterForm() {
             <Input
               className="bg-input-register placeholder:text-input-text-register"
               id="email"
+              name="email"
               type="email"
               placeholder="m@example.com"
               required
@@ -54,6 +56,7 @@ export function RegisterForm() {
             <Input
               className="bg-input-register placeholder:text-input-text-register"
               id="password"
+              name="password"
               type="password"
               placeholder="••••••••"
               minLength={6}
