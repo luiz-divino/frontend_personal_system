@@ -13,7 +13,7 @@ export function RegisterForm() {
   return (
     <Card className="w-full max-w-md text-center mx-auto bg-card-register">
       <CardHeader>
-        <CardTitle className="text-text-register text-4xl md:3xl sm:2xl">Personal Management</CardTitle>
+        <CardTitle className="text-text-register text-3xl sm:4xl">Personal Management</CardTitle>
         <CardDescription className="text-amber-50">Enter your email below to create your account</CardDescription>
       </CardHeader>
       <CardContent>
@@ -31,7 +31,7 @@ export function RegisterForm() {
                 <Input className="bg-input-register placeholder:text-input-text-register" id="password" type="password" placeholder="••••••••" minLength={6} required />
             </div>
 
-            <Button type="submit" className="w-full bg-text-register">
+            <Button type="submit" className="w-full bg-text-register font-bold text-card-register hover:bg-text-register/90">
               Register
             </Button>
         </form>
