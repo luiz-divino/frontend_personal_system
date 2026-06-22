@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -34,6 +35,10 @@ export function RegisterForm() {
             <Button type="submit" className="w-full bg-text-register font-bold text-card-register hover:bg-text-register/90">
               Register
             </Button>
+
+            <p className="text-amber-50">
+              Já tem uma conta? <Link href="/login" className="text-text-register font-bold">Faça Login</Link>
+            </p>
         </form>
       </CardContent>
     </Card>
