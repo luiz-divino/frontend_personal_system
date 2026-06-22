@@ -17,7 +17,7 @@ import { Spinner } from "../ui/spinner";
 export function RegisterForm() {
   const [state, formAction, isLoading] = useActionState(registerFormAction, null);
   return (
-    <Card className="w-full max-w-md text-center mx-auto bg-card-register">
+    <Card className="w-full max-w-md text-center mx-auto bg-card-register ">
       <CardHeader>
         <CardTitle className="text-text-register text-3xl sm:4xl">
           Personal Management
@@ -31,7 +31,7 @@ export function RegisterForm() {
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input
-              className="bg-input-register placeholder:text-input-text-register"
+              className="bg-input-register text-amber-50 placeholder:text-input-text-register"
               id="name"
               name="name"
               type="text"
@@ -43,7 +43,7 @@ export function RegisterForm() {
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
-              className="bg-input-register placeholder:text-input-text-register"
+              className="bg-input-register text-amber-50 placeholder:text-input-text-register"
               id="email"
               name="email"
               type="email"
@@ -54,7 +54,7 @@ export function RegisterForm() {
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
             <Input
-              className="bg-input-register placeholder:text-input-text-register"
+              className="bg-input-register text-amber-50 placeholder:text-input-text-register"
               id="password"
               name="password"
               type="password"
