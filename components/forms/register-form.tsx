@@ -11,7 +11,7 @@ import { Label } from "../ui/label";
 
 export function RegisterForm() {
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto bg-card-register">
       <CardHeader>
         <CardTitle>Register</CardTitle>
         <CardDescription>Enter your email below to create your account</CardDescription>
