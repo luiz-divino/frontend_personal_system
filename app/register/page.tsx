@@ -2,12 +2,13 @@ import { RegisterForm } from "@/components/forms/register-form";
 
 export default function Register() {
   return (
-    <div className="flex items-center justify-center min-h-screen px-4 py-8">
-      <div className="flex-1 bg-amber-400 flex justify-center w-full">
+    <div className="flex min-h-screen">
+      <div className="flex flex-1 items-center justify-center bg-card-register p-4">
         <RegisterForm />
       </div>
-      <div className="hidden w-full mx-auto md:block flex-1 bg-amber-100 items-center justify-center ">
-        <h1>form container</h1>
+
+      <div className="hidden md:flex flex-1 items-center justify-center bg-amber-100 p-4">
+        <h1 className="text-2xl font-bold">Conteúdo de introdução</h1>
       </div>
     </div>
   );
