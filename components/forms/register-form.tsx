@@ -17,16 +17,16 @@ export function RegisterForm() {
         <CardDescription>Enter your email below to create your account</CardDescription>
       </CardHeader>
       <CardContent>
-        <form action="">
-            <div>
+        <form action="" className="space-y-4">
+            <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
                 <Input id="name" type="text" placeholder="Digite seu nome..." minLength={3} required />
             </div>
-            <div>
+            <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input id="email" type="email" placeholder="m@example.com" required />
             </div>
-            <div>
+            <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <Input id="password" type="password" placeholder="••••••••" minLength={6} required />
             </div>
