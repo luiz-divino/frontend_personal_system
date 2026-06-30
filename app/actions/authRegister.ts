@@ -1,5 +1,6 @@
 "use server";
 import { apiClient } from "@/lib/api";
+import { User } from "@/lib/types";
 export async function registerFormAction(
     prevState: { sucess: boolean; message: string; redirectTo?: string } | null,
     formData: FormData,
@@ -16,7 +17,7 @@ export async function registerFormAction(
             password: password,
         };
 
-        await apiClient("/users", {
+        await apiClient<User>("/users", {
             method: "POST",
             body: JSON.stringify(data),
         });
