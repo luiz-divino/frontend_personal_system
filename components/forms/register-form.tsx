@@ -21,11 +21,11 @@ export function RegisterForm() {
         null,
     );
 
-    useEffect(()=>{
-        if(state?.sucess && state.redirectTo){
-            router.replace(state.redirectTo)
+    useEffect(() => {
+        if (state?.sucess && state.redirectTo) {
+            router.push(state.redirectTo);
         }
-    },[state, router])
+    }, [state, router]);
     return (
         <Card className="w-full max-w-md text-center mx-auto bg-card-register ">
             <CardHeader>
