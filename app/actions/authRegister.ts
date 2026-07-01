@@ -1,6 +1,6 @@
 "use server";
 import { apiClient } from "@/lib/api";
-import { User } from "@/lib/types";
+import { LoginResponse, User } from "@/lib/types";
 export async function registerFormAction(
     prevState: { sucess: boolean; message: string; redirectTo?: string } | null,
     formData: FormData,
@@ -22,12 +22,65 @@ export async function registerFormAction(
             body: JSON.stringify(data),
         });
 
-        return { sucess: true, message: "User registered successfully!", redirectTo: "/login" };
+        return {
+            sucess: true,
+            message: "User registered successfully!",
+            redirectTo: "/login",
+        };
     } catch (error) {
         if (error instanceof Error) {
-            return { sucess: false, message: error.message, redirectTo: "/register" };
+            return {
+                sucess: false,
+                message: error.message,
+                redirectTo: "/register",
+            };
         }
 
-        return { sucess: false, message: "An unknown error occurred.", redirectTo: "/register" };
+        return {
+            sucess: false,
+            message: "An unknown error occurred.",
+            redirectTo: "/register",
+        };
+    }
+}
+
+export async function loginAction(
+    prevState: {
+        sucess: boolean;
+        message: string;
+        redirectTo?: string;
+    } | null,
+    formData: FormData,
+) {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    try {
+        const data = {
+            email: email,
+            password: password,
+        };
+        await apiClient<LoginResponse>("session", {
+            method: "POST",
+            body: JSON.stringify(data),
+        });
+        return {
+            sucess: true,
+            message: "User logged in successfully!",
+            redirectTo: "/dashboard",
+        };
+    } catch (error) {
+        if (error instanceof Error) {
+            return {
+                sucess: false,
+                message: error.message,
+                redirectTo: "/login",
+            };
+        }
+        return {
+            sucess: false,
+            message: "Invalid email or password.",
+            redirectTo: "/login",
+        };
     }
 }
