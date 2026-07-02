@@ -58,7 +58,7 @@ export function LoginForm() {
                             required
                         />
                     </div>
-
+                    {state && !state.sucess && <p style={{color: 'red'}}>{state.message}</p>}
                     <Button
                         type="submit"
                         className="w-full bg-text-register font-bold text-card-register hover:bg-text-register/90"
