@@ -23,14 +23,13 @@ export class ApiError extends Error {
 
 type CacheOption = "no-cache" | "reload" | "force-cache" | "only-if-cached";
 
-interface RequestConfig extends Omit<RequestInit, "headers"> {
+interface RequestConfig extends RequestInit {
     token?: string;
     cache?: CacheOption;
     next?: {
         revalidate?: false | 0 | number;
         tags?: string[];
     };
-    headers?: Record<string, string>;
 }
 
 export async function apiClient<T>(
@@ -38,10 +37,10 @@ export async function apiClient<T>(
     options: RequestConfig = {},
 ): Promise<T> {
     // Extrai token e o resto das opções
-    const { token, headers: customHeaders, ...fetchOptions } = options;
+    const { token, ...fetchOptions } = options;
 
     const headers: Record<string, string> = {
-        ...(customHeaders || {}),
+        ...(fetchOptions.headers as Record<string, string>),
     };
 
     // Adiciona token se existir
