@@ -9,6 +9,5 @@ export interface LoginResponse {
     id: string;
     name: string;
     email: string;
-    password: string;
     token: string;
 }
