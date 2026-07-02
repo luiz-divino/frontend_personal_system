@@ -61,12 +61,11 @@ export async function loginAction(
             email: email,
             password: password,
         };
-        const userLogin = await apiClient<LoginResponse>("/session", {
+        const userResponse = await apiClient<LoginResponse>("/session", {
             method: "POST",
             body: JSON.stringify(dataLogin),
         });
-        console.log(userLogin)
-        await setToken(userLogin.token);
+        await setToken(userResponse.userLogin.token);
 
         return {
             sucess: true,
