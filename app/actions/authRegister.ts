@@ -1,5 +1,6 @@
 "use server";
 import { apiClient } from "@/lib/api";
+import { setToken } from "@/lib/auth";
 import { LoginResponse, User } from "@/lib/types";
 export async function registerFormAction(
     prevState: { sucess: boolean; message: string; redirectTo?: string } | null,
@@ -56,17 +57,20 @@ export async function loginAction(
     const password = formData.get("password") as string;
 
     try {
-        const data = {
+        const dataLogin = {
             email: email,
             password: password,
         };
-        await apiClient<LoginResponse>("session", {
+        const userLogin = await apiClient<LoginResponse>("/session", {
             method: "POST",
-            body: JSON.stringify(data),
+            body: JSON.stringify(dataLogin),
         });
+        console.log(userLogin)
+        await setToken(userLogin.token);
+
         return {
             sucess: true,
-            message: "User logged in successfully!",
+            message: "User logged with successfully!",
             redirectTo: "/dashboard",
         };
     } catch (error) {
@@ -74,13 +78,11 @@ export async function loginAction(
             return {
                 sucess: false,
                 message: error.message,
-                redirectTo: "/login",
             };
         }
         return {
             sucess: false,
             message: "Invalid email or password.",
-            redirectTo: "/login",
         };
     }
 }
