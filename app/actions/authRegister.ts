@@ -1,7 +1,8 @@
 "use server";
 import { apiClient } from "@/lib/api";
-import { setToken } from "@/lib/auth";
+import { deleteToken, setToken } from "@/lib/auth";
 import { LoginResponse, User } from "@/lib/types";
+import { redirect } from "next/navigation";
 export async function registerFormAction(
     prevState: { sucess: boolean; message: string; redirectTo?: string } | null,
     formData: FormData,
@@ -84,4 +85,9 @@ export async function loginAction(
             message: "Invalid email or password.",
         };
     }
+}
+
+export async function logOut() {
+    await deleteToken();
+    redirect("/login")
 }
