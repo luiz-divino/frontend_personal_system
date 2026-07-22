@@ -25,6 +25,11 @@ export async function setToken(token: string): Promise<string> {
     return token;
 }
 
+export async function deleteToken(): Promise<void>{
+    const cookieStore = await cookies()
+    cookieStore.delete(COOKIE_NAME)
+}
+
 export async function getUser(): Promise<User | null> {
     const token = await getToken();
     if (!token) {
