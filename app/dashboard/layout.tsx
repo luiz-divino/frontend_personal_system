@@ -1,3 +1,5 @@
+import { Sidebar } from "@/components/sidebar/sidebar";
+import { MobileSidebar } from "@/components/sidebar/sidebar-mobile";
 import { getUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
@@ -10,5 +12,13 @@ export default async function DashboardLayout({
     if (!user) {
         redirect("/login");
     }
-    return <div>{children}</div>;
+    return (
+        <div className="min-h-dvh overflow-hidden flex bg-amber-500">
+            <Sidebar userName={user.name} />
+            <div className="flex flex-col flex-1">
+                <MobileSidebar/>
+                <main className="bg-blue-400">{children}</main>
+            </div>
+        </div>
+    );
 }
