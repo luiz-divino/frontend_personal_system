@@ -1,3 +1,5 @@
+import { TaskStatus } from "./taskService";
+
 export interface User {
     name: string;
     email: string;
@@ -13,3 +15,16 @@ export interface LoginResponse {
         token: string;
     };
 }
+
+export interface Task {
+    id: string;
+    title: string;
+    description: string;
+    status: TaskStatus;
+    priority: TaskPriority;
+    deadLine: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export type TaskPriority = "LOW" | "MEDIUM" | "HIGH";
