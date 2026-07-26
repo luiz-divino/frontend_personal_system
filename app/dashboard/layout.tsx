@@ -13,11 +13,11 @@ export default async function DashboardLayout({
         redirect("/login");
     }
     return (
-        <div className="min-h-dvh overflow-hidden flex bg-amber-500">
+        <div className="min-h-dvh overflow-hidden flex bg-app-background">
             <Sidebar userName={user.name} />
             <div className="flex flex-col flex-1">
                 <MobileSidebar/>
-                <main className="bg-blue-400">{children}</main>
+                <main>{children}</main>
             </div>
         </div>
     );
