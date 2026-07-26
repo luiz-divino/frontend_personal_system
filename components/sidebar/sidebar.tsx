@@ -30,14 +30,14 @@ export function Sidebar({ userName }: IUserProps) {
         },
     ];
     return (
-        <aside className="hidden w-64 min-h-screen lg:flex flex-col bg-bg-sidebar">
+        <aside className="hidden w-64 min-h-screen lg:flex font-mono flex-col bg-app-sidebar">
             <div className="border-b py-8 gap-8">
                 <h1 className="text-center pb-4 text-lg text-text-sidebar">
                     PERSONAL SYSTEM
                 </h1>
-                <h1 className="text-white text-sm text-center">{userName}</h1>
+                <h1 className="text-white text-lg text-center">{userName}</h1>
             </div>
-            <nav className="p-6 space-y-4 flex-1">
+            <nav className="p-6 space-y-4 flex-1 font-mono">
                 {menuNav.map((item) => {
                     return (
                         <Link
@@ -46,14 +46,16 @@ export function Sidebar({ userName }: IUserProps) {
                             href={item.href}
                             replace
                             className={cn(
-                                "flex items-center p-1 gap-2 text-lg rounded-md transition-colors duration-300s text-text-register",
+                                "flex items-center justify-center text-center text-lg rounded-md transition-colors duration-300s text-gray-400",
                                 pathname === item.href
-                                    ? " text-text-active border-r-4 border-text-active"
+                                    ? " text-white border-x border-text-register"
                                     : "hover:bg-bg-hover",
                             )}
                         >
-                            {item.icon}
-                            {item.label}
+                            <span className="flex w-3/4  gap-2 items-center">
+                                {item.icon}
+                                {item.label}
+                            </span>
                         </Link>
                     );
                 })}
@@ -77,4 +79,3 @@ export function Sidebar({ userName }: IUserProps) {
         </aside>
     );
 }
-
