@@ -12,7 +12,7 @@ import { useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { formTaskAction } from "@/app/actions/authRegister";
+import { formTaskAction } from "@/app/actions/task";
 
 export function TaskForm() {
   const [open, setOpen] = useState(false);
