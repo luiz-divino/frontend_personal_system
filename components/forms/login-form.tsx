@@ -36,7 +36,7 @@ export function LoginForm() {
             <CardContent>
                 <form action={formAction} className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email" className="text-text-register">Email</Label>
                         <Input
                             className="bg-input-register text-amber-50 placeholder:text-input-text-register"
                             id="email"
@@ -47,7 +47,7 @@ export function LoginForm() {
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="password">Password</Label>
+                        <Label htmlFor="password" className="text-text-register">Password</Label>
                         <Input
                             className="bg-input-register text-amber-50 placeholder:text-input-text-register"
                             id="password"
