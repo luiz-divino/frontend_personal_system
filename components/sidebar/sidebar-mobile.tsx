@@ -37,12 +37,12 @@ export function MobileSidebar() {
     ];
 
     return (
-        <div className="lg:hidden bg-emerald-400">
-            <header className="sticky top-0 z-50 bg-amber-600">
+        <div className="lg:hidden bg-text-register">
+            <header className="sticky top-0 z-50">
                 <div className="flex h-16 items-center justify-between px-4">
                     <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger>
-                            <MenuIcon className="w-7 h-7" />
+                            <MenuIcon className="w-7 h-7 text-app-sidebar" />
                         </SheetTrigger>
                         <SheetContent className="bg-card-register">
                             <SheetHeader>
