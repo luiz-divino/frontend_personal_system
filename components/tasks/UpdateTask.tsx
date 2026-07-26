@@ -62,7 +62,7 @@ export function UpdateTask({ task }: Props) {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger
           render={
-            <button className="p-2 hover:bg-bg-hover transition-colors duration-300 hover:animate-pulse rounded-full">
+            <button className=" hover:bg-bg-hover transition-colors duration-300 hover:animate-pulse rounded-full">
               <SquarePen className="flex w-7 h-7 " />
             </button>
           }
