@@ -74,14 +74,14 @@ export default async function Tasks({ searchParams }: PageProps) {
                       )}
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 sm:px-7 items-center justify-between ">
+                  <div className="grid grid-cols-3 md:flex md:gap-10 sm:px-7 items-center justify-between ">
                     <div className="flex flex-1 justify-start pl-1 gap-2 md:justify-center items-center">
                       {statusConfig.map((item) => {
                         if (item.label === task.status) {
                           return (
                             <div
                               key={item.label}
-                              className={`${item.color} flex p-1 gap-1 justify-start items-center rounded-full px-1 sm:py-1 text-sm sm:gap-2`}
+                              className={`${item.color} flex p-1 gap-1 justify-start items-center rounded-full px-1 md:px-3 md:py-1 text-sm sm:gap-2`}
                             >
                               {item.icon}
                               <p>{task.status}</p>
@@ -105,7 +105,7 @@ export default async function Tasks({ searchParams }: PageProps) {
                         }
                       })}
                     </div>
-                    <div className="flex items-center pl-6 justify-center">
+                    <div className="flex items-center pl-6 sm:p-0 justify-center">
                       <span className="flex items-center justify-center gap-1">
                         <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
                         {dataFormatada}
