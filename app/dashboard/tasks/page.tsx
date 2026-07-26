@@ -59,7 +59,7 @@ export default async function Tasks({ searchParams }: PageProps) {
               return (
                 <Card
                   key={task.id}
-                  className="flex text-base font-mono sm:flex-row w-full justify-center sm:text-lg border-b border-gray-500  text-white bg-app-card px-7 "
+                  className="flex text-base font-mono sm:flex-row w-full justify-center sm:text-lg border-b border-gray-500  text-white bg-app-card md:px-7"
                 >
                   <div className="flex-1 flex flex-col mx-auto justify-center relative p-3 border border-gray-400 md:border-none rounded-md">
                     <div className="text-base  flex items-center gap-1">
@@ -74,14 +74,14 @@ export default async function Tasks({ searchParams }: PageProps) {
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-1 mx-auto gap-10 sm:px-7 items-center justify-between ">
-                    <div className="flex justify-center items-center">
+                  <div className="grid grid-cols-3 sm:px-7 items-center justify-between ">
+                    <div className="flex flex-1 justify-start pl-1 gap-2 md:justify-center items-center">
                       {statusConfig.map((item) => {
                         if (item.label === task.status) {
                           return (
                             <div
                               key={item.label}
-                              className={`${item.color} flex p-1 gap-1 items-center rounded-full px-3 sm:py-1 text-sm sm:gap-2`}
+                              className={`${item.color} flex p-1 gap-1 justify-start items-center rounded-full px-1 sm:py-1 text-sm sm:gap-2`}
                             >
                               {item.icon}
                               <p>{task.status}</p>
@@ -105,11 +105,13 @@ export default async function Tasks({ searchParams }: PageProps) {
                         }
                       })}
                     </div>
-                    <div className="flex  items-center justify-center gap-1">
-                      <Calendar className="w-3 h-3 sm:w-5 sm:h-5" />
-                      <p>{dataFormatada}</p>
+                    <div className="flex items-center pl-6 justify-center">
+                      <span className="flex items-center justify-center gap-1">
+                        <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
+                        {dataFormatada}
+                      </span>
                     </div>
-                    <div className="flex  justify-end sm:justify-center">
+                    <div className="flex flex-1 pr-1 justify-end sm:justify-center">
                       <UpdateTask task={task} />
                     </div>
                   </div>
