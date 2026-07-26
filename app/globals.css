@@ -5,6 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+    --color-app-background : rgb(40, 40, 40);
+    --color-app-card: rgb(54, 54, 54);
+    --color-app-sidebar: rgb(28, 28, 28);
     --color-title-register: oklch(0.7794 0.0974 155.06);
     --color-input-register: oklch(0.3348 0.0212 155.9);
     --color-input-text-register: oklch(0.556 0 0);
