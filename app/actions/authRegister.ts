@@ -1,10 +1,10 @@
 "use server";
-import { apiClient } from "@/lib/api";
+import { ApiError, apiClient } from "@/lib/api";
 import { deleteToken, setToken } from "@/lib/auth";
 import { LoginResponse, User } from "@/lib/types";
 import { redirect } from "next/navigation";
 export async function registerFormAction(
-  prevState: { sucess: boolean; message: string; redirectTo?: string } | null,
+  prevState: { success: boolean; message: string; redirectTo?: string } | null,
   formData: FormData,
 ) {
   console.log("registerFormAction", prevState, formData);
@@ -25,21 +25,29 @@ export async function registerFormAction(
     });
 
     return {
-      sucess: true,
+      success: true,
       message: "User registered successfully!",
       redirectTo: "/login",
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    if (error instanceof ApiError) {
+      return {
+        success: false,
+        message: error.message,
+        redirectTo: "/register",
+      };
+    }
+
     if (error instanceof Error) {
       return {
-        sucess: false,
+        success: false,
         message: error.message,
         redirectTo: "/register",
       };
     }
 
     return {
-      sucess: false,
+      success: false,
       message: "An unknown error occurred.",
       redirectTo: "/register",
     };
@@ -48,7 +56,7 @@ export async function registerFormAction(
 
 export async function loginAction(
   prevState: {
-    sucess: boolean;
+    success: boolean;
     message: string;
     redirectTo?: string;
   } | null,
@@ -69,20 +77,33 @@ export async function loginAction(
     await setToken(userResponse.userLogin.token);
 
     return {
-      sucess: true,
+      success: true,
       message: "User logged with successfully!",
       redirectTo: "/dashboard",
     };
-  } catch (error) {
-    if (error instanceof Error) {
+  } catch (error: unknown) {
+    console.error("Erro no login:", error);
+
+    // Verifica se o erro veio da API e se é de credenciais (ex: 401 Unauthorized)
+    if (error instanceof ApiError && error.status === 401) {
       return {
-        sucess: false,
+        success: false,
+        message: "Email ou Senha inválido!",
+      };
+    }
+
+    if (error instanceof ApiError) {
+      return {
+        success: false,
         message: error.message,
       };
     }
+
+    // Se não foi erro 401, caiu no erro genérico (Servidor fora, timeout, etc)
     return {
-      sucess: false,
-      message: "Invalid email or password.",
+      success: false,
+      message:
+        "Ocorreu um erro interno no servidor. Tente novamente mais tarde.",
     };
   }
 }
