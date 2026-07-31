@@ -71,14 +71,16 @@ export async function DeleteTaskAction(taskId: string) {
   }
 }
 
-export async function formTaskAction(formData: FormData) {
+export async function FormTaskAction(
+  prevState: { success: boolean; message: string } | null,
+  formData: FormData,
+) {
+  const token = await getToken();
   const title = formData.get("title") as string;
   const description = formData.get("description") as string;
   const status = formData.get("status") as string;
   const priority = formData.get("priority") as string;
-  const deadline = formData.get("deadLine");
-
-  console.log(formData);
+  const deadline = formData.get("deadLine") as string;
 
   try {
     const data = {
@@ -89,7 +91,6 @@ export async function formTaskAction(formData: FormData) {
       deadLine: deadline,
     };
 
-    const token = await getToken();
     await apiClient("/tasks", {
       token: token as string,
       method: "POST",
@@ -97,8 +98,15 @@ export async function formTaskAction(formData: FormData) {
     });
     revalidatePath("/dashboard/tasks");
 
-    return;
+    return {
+      success: true,
+      message: "Tarefa criada com sucesso.",
+    };
   } catch (error) {
-    console.log(error);
+    console.log(error)
+    return {
+      success: false,
+      message: error as string,
+    };
   }
 }
