@@ -4,21 +4,21 @@ import { getUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    const user = await getUser();
-    if (!user) {
-        redirect("/login");
-    }
-    return (
-        <div className="min-h-dvh overflow-hidden flex bg-app-background">
-            <Sidebar userName={user.name} />
-            <div className="flex flex-col flex-1">
-                <MobileSidebar/>
-                <main>{children}</main>
-            </div>
-        </div>
-    );
+  const user = await getUser();
+  if (!user) {
+    redirect("/login");
+  }
+  return (
+    <div className="min-h-dvh overflow-hidden flex bg-app-background">
+      <Sidebar userName={user.name} />
+      <div className="flex flex-col flex-1">
+        <MobileSidebar />
+        <main className={`px-2`}>{children}</main>
+      </div>
+    </div>
+  );
 }
