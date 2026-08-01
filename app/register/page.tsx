@@ -31,6 +31,7 @@ export default async function Register() {
             width={500}
             height={500}
             quality={800}
+            priority
             alt="Imagem referente a um painel adminstrativo animado"
           />
         </CardContent>
