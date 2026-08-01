@@ -1,7 +1,7 @@
 import { LoginForm } from "@/components/forms/login-form";
 import { getUser } from "@/lib/auth";
 import Image from "next/image";
-import painel from "./public/management.png";
+import painel from "./../../public/management.png";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 
