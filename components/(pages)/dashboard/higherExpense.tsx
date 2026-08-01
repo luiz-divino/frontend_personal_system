@@ -1,4 +1,4 @@
-import { pieChartData } from "@/app/utils/amountByCategory";
+import { pieChartData } from "@/app/actions/expense";
 import { formatCurrencyValue } from "@/app/utils/formatCurrency";
 
 export async function HigherExpense() {
