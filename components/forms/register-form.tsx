@@ -37,7 +37,7 @@ export function RegisterForm() {
     }
   }, [state, router]);
   return (
-    <Card className="w-full max-w-md text-center mx-auto bg-card-register shadow-xs shadow-text-register ">
+    <Card className="w-full max-w-md text-center mx-auto bg-card-register shadow-xs shadow-text-register rounded-md ">
       <CardHeader>
         <CardTitle className="text-text-register text-3xl sm:4xl">
           Personal Management
