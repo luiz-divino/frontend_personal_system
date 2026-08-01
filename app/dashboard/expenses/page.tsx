@@ -1,9 +1,38 @@
-export default function Expenses(){
-    return (
-        <div>
-            <h1>
-                AQUI É A PAGINA DE DESPESAS
-            </h1>
+import { ExpenseForm } from "@/components/forms/expense-form";
+import { getExpenses } from "@/app/actions/expense";
+import { TableExpense } from "@/components/(pages)/expense/TableExpense";
+import { Welcome } from "@/components/welcome/welcomeUser";
+import { getUser } from "@/lib/auth";
+import { HeaderCard } from "@/components/headerCard/headerCard";
+import { formatCurrencyValue } from "@/app/utils/formatCurrency";
+
+export default async function Expenses() {
+  const user = await getUser();
+  const expenses = await getExpenses();
+
+  const valorTotal = expenses.reduce((acc, init) => {
+    return acc + init.amount;
+  }, 0);
+  const valueFormatted = formatCurrencyValue(valorTotal);
+
+  return (
+    <main className="flex w-full flex-col md:gap-6 text-blue-100">
+      <HeaderCard>
+        <Welcome name={user?.name} page={"Despezas"} />
+        <div className="hidden md:flex">
+          <ExpenseForm />
         </div>
-    )
+      </HeaderCard>
+      <section className="flex items-center text-base md:text-xl justify-between">
+        <h1>
+          Gastos Totais:{" "}
+          <span className="text-red-500 font-semibold">-{valueFormatted}</span>
+        </h1>
+        <div className="md:hidden flex">
+          <ExpenseForm />
+        </div>
+      </section>
+      <TableExpense data={expenses} />
+    </main>
+  );
 }
