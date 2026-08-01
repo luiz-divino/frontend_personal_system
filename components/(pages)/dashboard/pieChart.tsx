@@ -1,6 +1,7 @@
 "use client";
-import { ExpenseCategorySummary} from "@/app/actions/expense";
+import { ExpenseCategorySummary } from "@/app/actions/expense";
 import { formatCurrencyValue } from "@/app/utils/formatCurrency";
+import { NoData } from "@/components/noData";
 import {
   Card,
   CardContent,
@@ -37,40 +38,86 @@ export const PieChartDashboard = ({
 }) => {
   return (
     <Card className="w-full rounded-xl bg-app-card md:mx-auto p-4 shadow-sm select-none">
-      <CardHeader className="p-0">
+      <CardHeader className="p-0 text-center">
         <CardTitle className="text-gray-300 font-semibold">
           Gastos por Categoria
         </CardTitle>
-        <CardDescription>Visão detalhada</CardDescription>
-
+        <CardDescription className="text-text-sidebar">Aqui você pode visualizar os seus gastos por categoria</CardDescription>
       </CardHeader>
 
-      <CardContent className="h-64 md:h-96 w-full p-0">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={amountByCategory}
-              dataKey="value"
-              nameKey="name"
-              innerRadius="40%"
-              outerRadius="65%"
-              paddingAngle={7}
-              label={({ value }) => `${formatCurrencyValue(value)}`}
-              labelLine={true}
-            >
-              {amountByCategory.map((entry, index) => (
-                <Cell
-                  key={`${entry.name}-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip
-              formatter={(value) => formatCurrencyValue(Number(value))}
-            />{" "}
-            <Legend verticalAlign="bottom" height={36} />
-          </PieChart>
-        </ResponsiveContainer>
+      <CardContent>
+        <div className="hidden md:flex h-96 w-full p-0">
+          {amountByCategory.length !== 0 ? (
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={amountByCategory}
+                  dataKey="value"
+                  nameKey="name"
+                  innerRadius="70%"
+                  outerRadius="95%"
+                  paddingAngle={7}
+                  label={({ value }) => `${formatCurrencyValue(value)}`}
+                  labelLine={true}
+                >
+                  {amountByCategory.map((entry, index) => (
+                    <Cell
+                      key={`${entry.name}-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip
+                  formatter={(value) => formatCurrencyValue(Number(value))}
+                />{" "}
+                <Legend align="left" verticalAlign="top" height={40} />
+              </PieChart>
+            </ResponsiveContainer>
+          ) : (
+            <NoData
+              page={"Despesas"}
+              message={
+                "Vá a página de Despesas para adicionar uma nova Despesa"
+              }
+            />
+          )}
+        </div>
+        <div className="md:hidden h-64 md:h-96 w-full p-0">
+          {amountByCategory.length !== 0 ? (
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={amountByCategory}
+                  dataKey="value"
+                  nameKey="name"
+                  innerRadius="30%"
+                  outerRadius="50%"
+                  paddingAngle={7}
+                  label={({ value }) => `${formatCurrencyValue(value)}`}
+                  labelLine={true}
+                >
+                  {amountByCategory.map((entry, index) => (
+                    <Cell
+                      key={`${entry.name}-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip
+                  formatter={(value) => formatCurrencyValue(Number(value))}
+                />{" "}
+                <Legend verticalAlign="bottom" height={40} />
+              </PieChart>
+            </ResponsiveContainer>
+          ) : (
+            <NoData
+              page={"Despesas"}
+              message={
+                "Vá a página de Despesas para adicionar uma nova Despesa"
+              }
+            />
+          )}
+        </div>
       </CardContent>
     </Card>
   );
