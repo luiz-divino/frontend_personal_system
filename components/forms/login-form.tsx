@@ -40,7 +40,7 @@ export function LoginForm() {
           Personal Management
         </CardTitle>
         <CardDescription className="text-amber-50">
-          Enter your email and password to login to your account
+          Digite seu Email e Senha para entrar na sua conta
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -60,7 +60,7 @@ export function LoginForm() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="password" className="text-text-register">
-              Password
+              Senha
             </Label>
             <Input
               className="bg-input-register text-amber-50 placeholder:text-input-text-register"
