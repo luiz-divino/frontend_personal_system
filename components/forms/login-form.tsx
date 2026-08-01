@@ -34,7 +34,7 @@ export function LoginForm() {
     }
   }, [state, router]);
   return (
-    <Card className="w-full max-w-md text-center mx-auto bg-card-register ">
+    <Card className="w-full max-w-md text-center mx-auto bg-card-register shadow-xs shadow-text-register rounded-md ">
       <CardHeader>
         <CardTitle className="text-text-register text-3xl sm:4xl">
           Personal Management
@@ -44,7 +44,7 @@ export function LoginForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={formAction} className="space-y-4">
+        <form action={formAction} className="space-y-4 ">
           <div className="space-y-2">
             <Label htmlFor="email" className="text-text-register">
               Email
