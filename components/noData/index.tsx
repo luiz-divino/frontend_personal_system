@@ -8,15 +8,17 @@ export const NoData = ({
   message: string;
 }) => {
   return (
-    <Card className="rounded-md">
-      <CardHeader className="text-center">
+    <Card className="rounded-md w-full">
+      <CardHeader>
         <div>
-          <CardTitle className="text-base md:text-xl text-white">
+          <CardTitle className="text-base md:text-xl text-text-register">
             Não há <span className="font-semibold">{page}</span> disponíveis no
             momento
           </CardTitle>
         </div>
-        <CardDescription className="text-text-sidebar">{message}</CardDescription>
+        <CardDescription className="text-text-sidebar">
+          {message}
+        </CardDescription>
       </CardHeader>
     </Card>
   );
