@@ -150,3 +150,27 @@ export async function deleteExpenseAction(expenseId: string) {
     throw new Error("Erro ao deletar despeza");
   }
 }
+
+
+export interface ExpenseCategorySummary {
+  name: string;
+  value: number;
+}
+
+export async function pieChartData() {
+  const token = await getToken();
+  try {
+    const amountByCategories = await apiClient<ExpenseCategorySummary[]>(
+      "/expenses/summary/categories",
+      {
+        method: "GET",
+        token: token as string,
+      },
+    );
+
+    return amountByCategories;
+  } catch (error) {
+    console.error(error)
+    throw new Error("Erro ao buscar gastos por categoria");
+  }
+}
