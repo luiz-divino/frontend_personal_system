@@ -37,13 +37,13 @@ export function RegisterForm() {
     }
   }, [state, router]);
   return (
-    <Card className="w-full max-w-md text-center mx-auto bg-card-register ">
+    <Card className="w-full max-w-md text-center mx-auto bg-card-register shadow-xs shadow-text-register ">
       <CardHeader>
         <CardTitle className="text-text-register text-3xl sm:4xl">
           Personal Management
         </CardTitle>
         <CardDescription className="text-amber-50">
-          Enter your email below to create your account
+          Insira suas informações abaixo para criar sua conta
         </CardDescription>
       </CardHeader>
       <CardContent>
