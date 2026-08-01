@@ -51,7 +51,7 @@ export async function HigherExpense() {
         <span className="font-semibold text-slate-900">
           {" "}
           ({formattedTotal})
-        dash</span>
+        </span>
         . O valor destacado é{" "}
         <span className="font-semibold text-slate-900">
           {formattedHighestValue}.
