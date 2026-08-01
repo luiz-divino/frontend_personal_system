@@ -7,7 +7,8 @@ import { Welcome } from "@/components/welcome/welcomeUser";
 import { getUser } from "@/lib/auth";
 import { PieChartDashboard } from "@/components/(pages)/dashboard/pieChart";
 import { HigherExpense } from "@/components/(pages)/dashboard/higherExpense";
-import { pieChartData } from "@/app/actions/expense"
+import { pieChartData } from "@/app/actions/expense";
+import { NoData } from "@/components/noData";
 
 interface SearchProps {
   searchParams: Promise<{
@@ -27,7 +28,11 @@ export default async function Dashboard({ searchParams }: SearchProps) {
     <div className="flex w-full py-4 flex-col gap-6 text-white">
       <div>
         <section className="w-full gap-2">
-          <Welcome name={user?.name} page={"Dashboard"} message="Tenha uma visão geral sobre seus gastos e tarefas" />
+          <Welcome
+            name={user?.name}
+            page={"Dashboard"}
+            message="Tenha uma visão geral sobre seus gastos e tarefas"
+          />
           <ResumeDashboardData />
         </section>
       </div>
@@ -36,12 +41,26 @@ export default async function Dashboard({ searchParams }: SearchProps) {
         <PieChartDashboard amountByCategory={amountByCategory} />
       </section>
       <section className="space-y-2">
-        <h1>Despesas Recentes</h1>
-        <TableExpense data={expensesLimit} />
+        <h1 className="font-semibold text-base md:text-xl">Despesas Recentes</h1>
+        {expensesLimit.length !== 0 ? (
+          <TableExpense data={expensesLimit} />
+        ) : (
+          <NoData
+            page={"Despesas"}
+            message={"Vá a página de Despesas para adicionar uma nova Despesa"}
+          />
+        )}
       </section>
       <section className="space-y-2">
-        <h1>Tarefas Recentes</h1>
-        <TableTask data={tasks} />
+        <h1 className="font-semibold text-base md:text-xl">Tarefas Recentes</h1>
+        {tasks.length !== 0 ? (
+          <TableTask data={tasks} />
+        ) : (
+          <NoData
+            page={"Tarefas"}
+            message={"Vá a página de Tarefas para adicionar uma nova Tarefa"}
+          />
+        )}
       </section>
     </div>
   );
