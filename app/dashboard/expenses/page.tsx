@@ -5,6 +5,7 @@ import { Welcome } from "@/components/welcome/welcomeUser";
 import { getUser } from "@/lib/auth";
 import { HeaderCard } from "@/components/headerCard/headerCard";
 import { formatCurrencyValue } from "@/app/utils/formatCurrency";
+import { NoData } from "@/components/noData";
 
 export default async function Expenses() {
   const user = await getUser();
@@ -24,7 +25,7 @@ export default async function Expenses() {
         </div>
       </HeaderCard>
       <section className="flex items-center text-base md:text-xl justify-between">
-        <h1>
+        <h1 className="font-bold">
           Gastos Totais:{" "}
           <span className="text-red-500 font-semibold">-{valueFormatted}</span>
         </h1>
@@ -32,7 +33,14 @@ export default async function Expenses() {
           <ExpenseForm />
         </div>
       </section>
-      <TableExpense data={expenses} />
+      {expenses.length !== 0 ? (
+        <TableExpense data={expenses} />
+      ) : (
+        <NoData
+          page={"Despesas"}
+          message={"Clique em adicionar nova Despesa"}
+        />
+      )}
     </main>
   );
 }
