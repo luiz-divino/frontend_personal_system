@@ -45,7 +45,7 @@ export function TaskForm() {
           render={
             <Button>
               <Plus className="w-7 h-7" />
-              <h1 className="hidden text-md sm:flex">Adicionar Tarefa</h1>
+              <h1 className="hidden text-md font-semibold sm:flex">Adicionar Nova Tarefa</h1>
             </Button>
           }
         />

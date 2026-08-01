@@ -63,7 +63,7 @@ export function ExpenseForm() {
           render={
             <Button>
               <Plus className="w-7 h-7" />
-              <h1 className="hidden text-md sm:flex">Adicionar Nova Despesa</h1>
+              <h1 className="hidden text-md font-semibold sm:flex">Adicionar Nova Despesa</h1>
             </Button>
           }
         />
