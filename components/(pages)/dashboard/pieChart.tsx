@@ -1,7 +1,6 @@
 "use client";
 import { ExpenseCategorySummary } from "@/app/actions/expense";
 import { formatCurrencyValue } from "@/app/utils/formatCurrency";
-import { NoData } from "@/components/noData";
 import {
   Card,
   CardContent,
@@ -37,7 +36,7 @@ export const PieChartDashboard = ({
   amountByCategory: ExpenseCategorySummary[];
 }) => {
   return (
-    <Card className="w-full rounded-xl bg-app-card md:mx-auto p-4 shadow-sm select-none">
+    <Card className="w-full rounded-xl bg-app-card md:mx-auto py-4 shadow-sm select-none">
       <CardHeader className="p-0 text-center">
         <CardTitle className="text-gray-300 font-semibold">
           Gastos por Categoria
@@ -47,15 +46,14 @@ export const PieChartDashboard = ({
 
       <CardContent>
         <div className="hidden md:flex h-96 w-full p-0">
-          {amountByCategory.length !== 0 ? (
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={amountByCategory}
                   dataKey="value"
                   nameKey="name"
-                  innerRadius="70%"
-                  outerRadius="95%"
+                  innerRadius="60%"
+                  outerRadius="85%"
                   paddingAngle={7}
                   label={({ value }) => `${formatCurrencyValue(value)}`}
                   labelLine={true}
@@ -73,17 +71,8 @@ export const PieChartDashboard = ({
                 <Legend align="left" verticalAlign="top" height={40} />
               </PieChart>
             </ResponsiveContainer>
-          ) : (
-            <NoData
-              page={"Despesas"}
-              message={
-                "Vá a página de Despesas para adicionar uma nova Despesa"
-              }
-            />
-          )}
         </div>
         <div className="md:hidden h-64 md:h-96 w-full p-0">
-          {amountByCategory.length !== 0 ? (
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -109,14 +98,6 @@ export const PieChartDashboard = ({
                 <Legend verticalAlign="bottom" height={40} />
               </PieChart>
             </ResponsiveContainer>
-          ) : (
-            <NoData
-              page={"Despesas"}
-              message={
-                "Vá a página de Despesas para adicionar uma nova Despesa"
-              }
-            />
-          )}
         </div>
       </CardContent>
     </Card>
