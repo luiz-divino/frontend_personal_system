@@ -1,7 +1,7 @@
 import { LoginForm } from "@/components/forms/login-form";
 import { getUser } from "@/lib/auth";
 import Image from "next/image";
-import painel from "./../../public/management.png";
+import painel from "./public/management.png";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 
@@ -32,6 +32,7 @@ export default async function Login() {
             height={500}
             quality={800}
             alt="Imagem referente a um painel adminstrativo animado"
+            priority
           />
         </CardContent>
       </Card>
