@@ -7,7 +7,7 @@ import { Welcome } from "@/components/welcome/welcomeUser";
 import { getUser } from "@/lib/auth";
 import { PieChartDashboard } from "@/components/(pages)/dashboard/pieChart";
 import { HigherExpense } from "@/components/(pages)/dashboard/higherExpense";
-import { pieChartData } from "@/app/utils/amountByCategory";
+import { pieChartData } from "@/app/actions/expense"
 
 interface SearchProps {
   searchParams: Promise<{
