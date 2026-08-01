@@ -7,22 +7,49 @@ import {
   DialogTrigger,
   DialogHeader,
 } from "@/components/ui/dialog";
-import { Plus } from "lucide-react";
-import { useState } from "react";
+import { Download, Plus } from "lucide-react";
+import { useActionState, useEffect, useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { formTaskAction } from "@/app/actions/task";
+import { FormTaskAction } from "@/app/actions/task";
+import { useRouter } from "next/navigation";
+import { toast } from "../ui/toast";
+
+const initialState = { success: false, message: "" };
 
 export function TaskForm() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+
+  const [state, formAction, isPending] = useActionState(
+    FormTaskAction,
+    initialState,
+  );
+
+  useEffect(() => {
+    if (state.success) {
+      router.refresh();
+      window.setTimeout(() => setOpen(false), 0);
+      toast.add({
+        type: "success",
+        description: "Despesa criada com sucesso!",
+      });
+    }
+  }, [router, state.success]);
   return (
-    <div className="flex items-center justify-center text-app-card bg-text-register p-3 rounded-md gap-2">
+    <div className="flex items-end justify-center gap-2 pr-2 md:p-3">
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger className="rounded-3xl font-bold gap-2 flex justify-center items-center">
-          <Plus className="w-7 h-7" />
-          <h1 className="hidden sm:flex">adicionar tarefa</h1>
-        </DialogTrigger>
+        <DialogTrigger
+          className=" text-app-background bg-text-register font-bold gap-2 flex justify-center items-center hover:bg-emerald-500 hover:rounded-full transition-all duration-300 hover:scale-105"
+          render={
+            <Button>
+              <Plus className="w-7 h-7" />
+              <h1 className="hidden text-md sm:flex">Adicionar Tarefa</h1>
+            </Button>
+          }
+        />
+
         <DialogContent>
           <DialogHeader>
             <DialogTitle className={"font-bold"}>
@@ -31,10 +58,7 @@ export function TaskForm() {
           </DialogHeader>
 
           <div>
-            <form
-              action={formTaskAction}
-              className="flex flex-col gap-3 space-y-2"
-            >
+            <form action={formAction} className="flex flex-col gap-3 space-y-2">
               <div className="space-y-2">
                 <Label htmlFor="title">titulo</Label>
                 <Input
@@ -90,7 +114,14 @@ export function TaskForm() {
                 />
               </div>
 
-              <Button type="submit">Adicionar</Button>
+              <Button
+                type="submit"
+                disabled={isPending}
+                className={"w-full mt-4"}
+              >
+                <Download className="w-5 h-5" />
+                {isPending ? "Salvando..." : "Adicionar"}
+              </Button>
             </form>
           </div>
         </DialogContent>
