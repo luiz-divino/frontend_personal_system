@@ -30,12 +30,12 @@ export function Sidebar({ userName }: IUserProps) {
         },
     ];
     return (
-        <aside className="hidden w-64 min-h-screen lg:flex font-mono flex-col bg-app-sidebar">
-            <div className="border-b py-8 gap-8">
-                <h1 className="text-center pb-4 text-lg text-text-sidebar">
+        <aside className="hidden w-64 min-h-screen lg:flex font-semibold flex-col bg-app-sidebar">
+            <div className="border-b py-8">
+                <h1 className="text-center font-semibold text-lg text-text-register">
                     PERSONAL SYSTEM
                 </h1>
-                <h1 className="text-white text-lg text-center">{userName}</h1>
+                <p className="text-text-sidebar text-center">v0.1.0</p>
             </div>
             <nav className="p-6 space-y-4 flex-1 font-mono">
                 {menuNav.map((item) => {

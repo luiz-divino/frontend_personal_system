@@ -7,6 +7,7 @@ import {
     SheetHeader,
     SheetTrigger,
     SheetTitle,
+    SheetDescription,
 } from "../ui/sheet";
 import { LayoutDashboard, ListTodo, LogOut, MenuIcon, Wallet } from "lucide-react";
 import Link from "next/link";
@@ -37,16 +38,17 @@ export function MobileSidebar() {
     ];
 
     return (
-        <div className="lg:hidden bg-text-register">
+        <div className="lg:hidden bg-text-sidebar">
             <header className="sticky top-0 z-50">
                 <div className="flex h-16 items-center justify-between px-4">
                     <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger>
                             <MenuIcon className="w-7 h-7 text-app-sidebar" />
                         </SheetTrigger>
-                        <SheetContent className="bg-card-register">
+                        <SheetContent className="bg-card-register" side="left">
                             <SheetHeader>
-                                <SheetTitle className="text-center text-white">PERSONAL SYSTEM</SheetTitle>
+                                <SheetTitle className="text-center text-text-register font-semibold">PERSONAL SYSTEM</SheetTitle>
+                                <SheetDescription className={'text-center'}>v0.1.0</SheetDescription>
                             </SheetHeader>
 
                             <nav className="flex flex-col p-6 space-y-4">
