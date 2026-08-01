@@ -37,8 +37,12 @@ export default async function Dashboard({ searchParams }: SearchProps) {
         </section>
       </div>
       <section className="space-y-4">
-        <HigherExpense />
+        {amountByCategory.length !== 0 ? (
+          <>
+          <HigherExpense/>
         <PieChartDashboard amountByCategory={amountByCategory} />
+          </>
+        ): (<NoData page={"Despesas"} message={`Vá a página de Despesas para adicionar uma nova Gasto`}/>)}
       </section>
       <section className="space-y-2">
         <h1 className="font-semibold text-base md:text-xl">Despesas Recentes</h1>
@@ -47,7 +51,7 @@ export default async function Dashboard({ searchParams }: SearchProps) {
         ) : (
           <NoData
             page={"Despesas"}
-            message={"Vá a página de Despesas para adicionar uma nova Despesa"}
+            message={"Vá a página de Despesas para adicionar uma novo Gasto"}
           />
         )}
       </section>
