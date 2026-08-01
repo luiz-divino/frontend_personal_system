@@ -6,11 +6,9 @@ import { ListTodo, LayoutDashboard, Wallet, LogOut } from "lucide-react";
 import { Button } from "../ui/button";
 import { logOut } from "@/app/actions/authRegister";
 
-interface IUserProps {
-    userName: string;
-}
 
-export function Sidebar({ userName }: IUserProps) {
+
+export function Sidebar() {
     const pathname = usePathname();
     const menuNav = [
         {
