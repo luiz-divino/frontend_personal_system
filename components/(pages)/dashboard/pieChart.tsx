@@ -1,5 +1,5 @@
 "use client";
-import { ExpenseCategorySummary } from "@/app/actions/expense";
+import { ExpenseCategorySummary} from "@/app/actions/expense";
 import { formatCurrencyValue } from "@/app/utils/formatCurrency";
 import {
   Card,
